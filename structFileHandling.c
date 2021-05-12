@@ -20,6 +20,7 @@ typedef struct linkedList
 } node;
 node *head = NULL, *last = NULL;
 
+FILE *fptr;
 int mainAction();
 void addStudent();
 void deleteStudent();
@@ -59,6 +60,7 @@ int main()
             break;
         }
     } while (i == 0);
+    fclose(fptr);
     return 0;
 }
 
