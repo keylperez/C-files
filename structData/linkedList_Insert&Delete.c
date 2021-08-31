@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 struct linked_list
 {
@@ -8,7 +8,7 @@ struct linked_list
 };
 
 typedef struct linked_list node;
-node *head=NULL, *last=NULL;
+node *head = NULL, *last = NULL;
 
 void create_linked_list();
 void print_linked_list();
@@ -54,48 +54,44 @@ void create_linked_list()
 {
     int val;
 
-    while(1)
+    while (1)
     {
         printf("Input a number. (Enter -1 to exit)\n");
 
         scanf("%d", &val);
 
-        if(val==-1)
+        if (val == -1)
             break;
 
         insert_at_last(val);
     }
-
 }
-
 
 void insert_at_last(int value)
 {
     node *temp_node;
-    temp_node = (node *) malloc(sizeof(node));
+    temp_node = (node *)malloc(sizeof(node));
 
-    temp_node->number=value;
-    temp_node->next=NULL;
+    temp_node->number = value;
+    temp_node->next = NULL;
 
-    if(head==NULL)
+    if (head == NULL)
     {
-        head=temp_node;
-        last=temp_node;
+        head = temp_node;
+        last = temp_node;
     }
     else
     {
-        last->next=temp_node;
-        last=temp_node;
+        last->next = temp_node;
+        last = temp_node;
     }
-
 }
-
 
 void insert_at_first(int value)
 {
-    node *temp_node = (node *) malloc(sizeof(node));
+    node *temp_node = (node *)malloc(sizeof(node));
 
-    temp_node->number=value;
+    temp_node->number = value;
     temp_node->next = head;
 
     head = temp_node;
@@ -106,11 +102,11 @@ void insert_after(int key, int value)
     node *myNode = head;
     int flag = 0;
 
-    while(myNode!=NULL)
+    while (myNode != NULL)
     {
-        if(myNode->number==key)
+        if (myNode->number == key)
         {
-            node *newNode = (node *) malloc(sizeof(node));
+            node *newNode = (node *)malloc(sizeof(node));
             newNode->number = value;
             newNode->next = myNode->next;
             myNode->next = newNode;
@@ -119,29 +115,26 @@ void insert_after(int key, int value)
 
             flag = 1;
 
-
             break;
         }
         else
             myNode = myNode->next;
     }
 
-    if(flag==0)
+    if (flag == 0)
         printf("Key not found!\n");
-
 }
-
 
 void delete_item(int value)
 {
-    node *myNode = head, *previous=NULL;
+    node *myNode = head, *previous = NULL;
     int flag = 0;
 
-    while(myNode!=NULL)
+    while (myNode != NULL)
     {
-        if(myNode->number==value)
+        if (myNode->number == value)
         {
-            if(previous==NULL)
+            if (previous == NULL)
                 head = myNode->next;
             else
                 previous->next = myNode->next;
@@ -157,7 +150,7 @@ void delete_item(int value)
         myNode = myNode->next;
     }
 
-    if(flag==0)
+    if (flag == 0)
         printf("Key not found!\n");
 }
 
@@ -168,7 +161,7 @@ void print_linked_list()
     node *myList;
     myList = head;
 
-    while(myList!=NULL)
+    while (myList != NULL)
     {
         printf("%d ", myList->number);
 

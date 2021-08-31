@@ -1,0 +1,70 @@
+# Pointer arithmetic
+- pointer to variable
+    [
+        int num;
+        int *num;
+        num = &num;
+    ]
+
+- pointer to array
+    [
+        int arr[5] = {1, 2, 3, 4, 5}; //same as &arr[0]
+        //arr + 1  == arr[1]
+        //array is a pointer pointing to the address of the first element
+        arr[2] = 2;
+        *arr = 2;
+        *{arr + 2} = 2
+    ]
+
+- memcpy    void*memcpy(void* dest, void* src, size_tn);
+    [
+        Memory copy or memcpy, receives 3 parameters: dest, src,and size. 
+        It will copy into the destfrom the srcan Nnumber of bytesdepending on the parameters passed to the function.
+        Thisfunction can be found in the “string.h”header file.
+    ]
+
+- memmove   void*memmove(void* dest, void* src, size_tn);
+    [
+        Same as memcpy but cuts and paste instead of copy and paste.
+    ]
+
+# Memory Allocation
+[don't forget type cast]
+//int*retVal = (int*)malloc (sizeof(int) * SIZE)
+
+- malloc    void*malloc (size_t n)
+    [
+        Memory allocateor malloc, receives only1 parameter, which is the size in bytes of the memory to be allocated. 
+        It will return a pointerto the newly allocated memory, or it will return NULL if the function fails.
+    ]
+
+- calloc    void*calloc (int numElements, size_t n)
+    [
+        calloc on the other hand receives 2 parameters, the number of elements, and the size of each element. 
+        It does the same thing as malloc, the major difference beingthe fact that calloc also INITIALIZES the value of each of those dynamically allocated elements to0.
+    ]
+
+- free      void free(void* ptr)
+    [
+        Free is a function that deallocatesdynamically allocatedmemory.
+    ]
+
+
+# String functions:
+- strcpy    char*strcpy(char* dest, char* src)
+    [String copy or strcpy, is a function thatreceives 2 parameters, dest and src. It copies into destall the elements in src INCLUDINGthe ‘\0’character.]
+
+- strcmp    char*strcpy(char* dest, char* src)
+    [Stringcompare or strcmp, is a function that compares the string str1 with the string str2.]
+
+- strlen    int strlen(const char* string)
+    [String length or strlen, is a function that returns the lengthof the parameter string.]
+
+- strcat    char*strcat(char* dest, char* src)
+    [String concatenate orstrcat, is a function that appends to the end of the string destthe value of string src.]
+
+- puts      puts(string)
+    [Put string or puts is a function that basically displays a string. A newline character‘\n’is always appended to the output]
+
+- gets      gets(string)
+    [Getstring or gets is a function thatstores into the parameter string the string inputted by the user.]
