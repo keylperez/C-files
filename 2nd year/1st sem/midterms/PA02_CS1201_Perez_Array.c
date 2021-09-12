@@ -31,7 +31,7 @@ int *reSubsetIndex(int arr1[], int size1, int arr2[], int size2);
 int main()
 {
     int A[] = {31, 15, 2, 1, 15};
-    int B[] = {15, 33, 15, 2, 1};
+    int B[] = {15, 33, 17, 2, 1};
     int *C;
     int Asize = sizeof(A) / sizeof(int);
     int Bsize = sizeof(B) / sizeof(int);
@@ -77,24 +77,19 @@ int main()
 
 int *reSubsetIndex(int arr1[], int size1, int arr2[], int size2)
 {
-    int resultArr[size2];
+    int *resultArr = (int *)malloc(sizeof(int) * size2);
     int i, x, positive;
-    for (i = 0; i < size2; i++, positive = 0)
+    for (i = 0; i < size2; i++, resultArr[i] = -1)
     {
         for (x = 0; x < size1; x++)
         {
             if (arr2[i] == arr1[x])
             {
                 resultArr[i] = x;
-                positive = 1;
+                x = size1;
             }
         }
-        if (positive == 0)
-        {
-            resultArr[i] = -1;
-        }
     }
-    int *retVal = (int *)malloc(sizeof(int) * size2);
-    memcpy(retVal, resultArr, size2 * sizeof(int));
-    return retVal;
+
+    return resultArr;
 }

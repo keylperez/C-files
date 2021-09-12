@@ -14,8 +14,10 @@ void clr()
 int main()
 {
 
-    int a[] = {3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48};
-    int size = 15, i = 0, choice = NULL, moves = 0;
+    int a[] = {17, 14, 18, 30, 31, 5, 25, 19, 99, 97};
+    int size = sizeof(a) / 4;
+//    printf("%d", size);
+    int i = 0, choice = NULL, moves = 0;
     printf("\n\nArray: ");
     for (i = 0; i < size; i++)
     {
@@ -31,6 +33,7 @@ int main()
     switch (choice)
     {
     case 0:
+    	return 0;
         exit(1);
         break;
     case 1:
@@ -67,15 +70,15 @@ int main()
 int InsertionSort(int A[], int n)
 {
     int i = 0, j = 0, count = 0;
-    int x, y, z, temp;
+    int x, y, z, c, temp;
     //i for already sorted
     //x for unsorted
     //z for current unsorted
     //y for current element
-    for (x = 1; x < n; x++, i++, count++)
+    for (x = 1; x < n; x++, i++)
     { //right-most sorted
 
-        for (y = i, z = x, j = 0; !j; y--, z--, count++)
+        for (y = i, z = x, j = 0; !j; y--, z--)
         { //swapping loop
 
             j = 1;
@@ -88,17 +91,24 @@ int InsertionSort(int A[], int n)
                 j = 0;
             }
         }
+        
+                printf("\n%d Array: ", ++count);
+                for (c = 0; c < n; c++)
+                {
+                    printf("%d, ", A[c]);
+                }
     }
     return count;
 }
 
 int BubbleSort(int A[], int n)
 {
-    int i, x, temp, count = 0;
-    for (i = 0; i < n - 1; i++, count++)
+    int i, x, y, temp, count = 0;
+    printf("\n");
+    for (i = 0; i < n - 1; i++)//outer loop
     {
 
-        for (x = 0; x < n - i - 1; x++, count++)
+        for (x = 0; x < n - i - 1; x++)
         {
             if (A[x] > A[x + 1])
             {
@@ -107,19 +117,26 @@ int BubbleSort(int A[], int n)
                 A[x + 1] = temp;
             }
         }
+        
+                printf("\n%d Array: ", ++count);
+
+                for (y = 0; y < n; y++)
+                {
+                    printf("%d, ", A[y]);
+                }
     }
     return count;
 }
 
 int SelectionSort(int A[], int n)
 {
-    int i, x, y, temp, count = 0;
+    int i, x, y, c, temp, count = 0;
 
-    for (y = 0; y < n; y++, count++)
+    for (y = 0; y < n; y++)
     {
         i = y;
 
-        for (x = i + 1; x < n; x++, count++)
+        for (x = i + 1; x < n; x++)
         {
 
             if (A[i] > A[x])
@@ -130,6 +147,12 @@ int SelectionSort(int A[], int n)
         temp = A[y];
         A[y] = A[i];
         A[i] = temp;
+                printf("\n%d Array: ", ++count);
+
+        for (c = 0; c < n; c++)
+        {
+            printf("%d, ", A[c]);
+        }
     }
     return count;
 }

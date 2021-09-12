@@ -25,11 +25,20 @@ matrix[][3] = {4, 2, 3, 9, 3, 4, 8, 5, 3};
 
 int main()
 {
-    int array[5] = {1, 3, 0, 4, 2};
-    int *iPtr;
-    iPtr = array + 2;
-    // printf("%x\n", iPtr);
-    // printf("%d", *(iPtr + 1));
-    printf("%d", array[*iPtr] + *(iPtr + 2));
+    char word[100];
+    char sentence[300];
+    char *word2;
+
+    puts("Enter any string:");
+    gets(word); //inputs string
+
+    system("cls"); //clears terminal
+    word2 = formatString(word);
+    sprintf(sentence, "Original string : %s", word);
+    puts(sentence);
+    sprintf(sentence, "Formatted string: %s", word2);
+    puts(sentence);
+
+    free(word2);
     return 0;
 }
