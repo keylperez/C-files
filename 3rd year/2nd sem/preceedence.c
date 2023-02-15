@@ -18,33 +18,17 @@ int performOperand(int left, int right, char operand);
 void mutateArr(char string[50], int openPar, int closePar, int mutated);
 // int checkDigit(char string[50], int begIndex, int endIndex);
 
-//
+// ((65+5)x(4+3))/((4x3)-(87-2))
 
 int main()
 {
-    char operation[50];
+    char operation[50], operand;
 
     printf("input algebraic operation & please start with an open parenthesis & end with a closed parenthesis: \n");
     scanf("%s", operation);
 
     int i = 0, j = i, loop = 0;
 
-    //    do
-    //    { //  i = 6
-    //
-    //        if (operation[i] == '(') // get index of digit
-    //        {
-    //            j = i + 1;           // index after open parenthesis
-    //        }                        //  j = 2
-    //        if (operation[i] == ')') // index of closed parenthesis
-    //        {
-    //    		printf("\nopenPar: %d, closePar: %d", j, i);
-    //            loop = computeExpression(operation, j, i); //  i = 6
-    //            // (70x(4+3)/(4*3)-(87-2))
-    //            i = 0;
-    //        }
-    //
-    //    } while (operation[i] != '\0'); // while index has not reached end of string
     while (operation[i] != '\0')
     { //  i = 6
 
@@ -62,6 +46,15 @@ int main()
         }
 
     } // while index has not reached end of string
+    for (i = 0; operation[i] != '\0' || isdigit(operation[i]);)
+    {
+        if (isdigit(operation[i]))
+        {
+            j = i;
+        }
+    }
+
+    operation = atoid(operation);
     printf("\nResult: %s", operation);
 
     return 0;
