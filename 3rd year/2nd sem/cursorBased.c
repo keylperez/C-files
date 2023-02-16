@@ -40,10 +40,10 @@ int main()
     insertEl(VH, 2);
     displayArr(VH);
 
-    delEl(VH, 56);
-    displayArr(VH);
-    delEl(VH, 3);
-    displayArr(VH);
+//    delEl(VH, 56);
+//    displayArr(VH);
+//    delEl(VH, 3);
+//    displayArr(VH);
 
     free(VH);
     return 0;
@@ -88,16 +88,21 @@ void delEl(struct VHeap *VH, int num) // num 56
     else
     {
 
-        for (i = VH->start; VH->arr[VH->arr[i].next].data != num && i != -1; i = VH->arr[i].next) //
+        for (i = VH->start; VH->arr[VH->arr[i].next].data != num && VH->arr[i].next != -1; i = VH->arr[i].next) //
         {
         }
-        j = VH->arr[i].next; // j = 1
+        if (VH->arr[i].next != -1)
+        {
+            j = VH->arr[i].next;
+            VH->arr[i].next = VH->arr[j].next;
+            VH->arr[j].next = VH->avail;
+            VH->avail = j;
+        }
+        // j = VH->arr[i].next; // j = 1
 
-        VH->arr[i].next = VH->arr[j].next;
-        VH->avail = j;
+        // VH->arr[i].next = VH->arr[j].next;
+        // VH->avail = j;
     }
-
-    //    free(VH->arr[VH->arr[i].next]);
 }
 
 void displayArr(struct VHeap *VH)
