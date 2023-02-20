@@ -29,19 +29,20 @@ int main()
         printf("failed malloc");
         return 1;
     }
+
+    // initialize avail and start to 0 index
     VH->start = 0;
     VH->avail = 0;
 
     printf("Success initialize\n");
 
+    // pass on VH which is a pointer to the struct
     insertEl(VH, 1);
     insertEl(VH, 56);
     insertEl(VH, 3);
     insertEl(VH, 2);
     displayArr(VH);
 
-    // uncomment below to make code insert work since del is still in progress
-    // only issue with del is not changing avail if previous avail is not end of the list
     delEl(VH, 56);
     delEl(VH, 3);
     printf("\n\n\n");
@@ -53,6 +54,7 @@ int main()
 
 void insertEl(struct VHeap *VH, int num)
 {
+    // 1st insert
     if (isEmpty(VH))
     {
         VH->arr[0].data = num;
@@ -62,15 +64,17 @@ void insertEl(struct VHeap *VH, int num)
     }
     else
     {
-        int i = VH->start;
-        while (VH->arr[i].next != -1)
+        int i;
+        // find end of list
+        for (i = VH->start; VH->arr[i].next != -1; i = VH->arr[i].next)
         {
-            i = VH->arr[i].next;
         }
-        VH->arr[i].next = VH->avail;
-        VH->arr[VH->avail].data = num;
-        VH->arr[VH->avail].next = -1;
 
+        VH->arr[i].next = VH->avail; // set next of last element to avail
+        VH->arr[VH->avail].data = num;
+        VH->arr[VH->avail].next = -1; // set last of list
+
+        // set avail to next index after the last element (works if avail is lower index)
         for (i = 0; VH->arr[i].next != -1; i++)
         {
         }
@@ -81,7 +85,7 @@ void insertEl(struct VHeap *VH, int num)
 void delEl(struct VHeap *VH, int num) // num 56
 {
     int i, j;
-
+    // deletion of start element in list
     if (num == VH->arr[VH->start].data)
     {
         VH->avail = VH->start;
@@ -89,16 +93,15 @@ void delEl(struct VHeap *VH, int num) // num 56
     }
     else
     {
-
+        // traverses list and finds and compares num to the data of the next of current element, this is in order to edit next when data is found
         for (i = VH->start, j = VH->arr[i].next; VH->arr[j].data != num && j != -1; i = VH->arr[i].next, j = VH->arr[i].next) //
         {
         }
+        // if not end of the list
         if (j != -1)
         {
-            //            j = VH->arr[i].next;
-            VH->arr[i].next = VH->arr[j].next;
-            //            VH->arr[j].next = NULL;
-            if (VH->avail >= j)
+            VH->arr[i].next = VH->arr[j].next; // element after deleted data is next
+            if (VH->avail >= j)                // this condition is to check if avail index is after end of list or not, if not then avail remains at the lower index available.
             {
 
                 VH->avail = j;
