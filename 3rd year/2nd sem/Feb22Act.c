@@ -45,7 +45,7 @@ int main()
     displayArr(AL);
     LinkedList *L = sortCourse(AL, "BSCS");
     //    display(AL);
-    display(AL, L);
+    display(AL, &L);
     free(AL);
     return 0;
 }
@@ -94,7 +94,7 @@ LinkedList *sortCourse(ArrayList *AL, char string[8])
             i++;
         }
     }
-    return &head;
+    return head;
 }
 
 void displayArr(ArrayList *AL)
@@ -119,6 +119,6 @@ void display(ArrayList *AL, LinkedList *L)
     printf("\n\n\n");
     for (trav = *L; trav != NULL; trav = trav->link)
     {
-        printf("\n%u - %s %c. %s", trav->stud.ID, trav->stud.FName, trav->stud.MI, trav->stud.LName);
+        printf("\n%u - %s %c. %s, %s", trav->stud.ID, trav->stud.FName, trav->stud.MI, trav->stud.LName, trav->stud.course);
     }
 }
