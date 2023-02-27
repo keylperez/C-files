@@ -26,8 +26,8 @@ typedef struct
 } ArrayList;
 
 void insertArr(ArrayList *AL, char fn[24], char mn, char ln[16], unsigned int id, char course[8], int year);
-void displayArr(ArrayList *AL);
-void display(ArrayList *AL, LinkedList *L);
+void displayArr(ArrayList AL);
+void display(ArrayList AL, LinkedList *L);
 LinkedList *sortCourse(ArrayList *AL, char string[8]);
 
 int main()
@@ -42,9 +42,9 @@ int main()
     insertArr(AL, "Leano", 'F', "Leano", 18104944, "BSCS", 3);
     insertArr(AL, "Samson", 'G', "Samson", 18104944, "nop", 3);
     insertArr(AL, "Woogie", 'I', "Woogie", 18104944, "BSCS", 3);
-    displayArr(AL);
+    displayArr(*AL);
     LinkedList *L = sortCourse(AL, "BSCS");
-    display(AL, &L);
+    display(*AL, &L);
     free(AL);
     return 0;
 }
@@ -96,30 +96,30 @@ LinkedList *sortCourse(ArrayList *AL, char string[8])
     return head; // return address of first node
 }
 
-void displayArr(ArrayList *AL)
+void displayArr(ArrayList AL)
 {
     int i;
     printf("Initial Array List:");
-    for (i = 0; i < AL->count; i++)
+    for (i = 0; i < AL.count; i++)
     {
-        printf("\n%u - %s %c. %s, %s", AL->stud[i].ID, AL->stud[i].FName, AL->stud[i].MI, AL->stud[i].LName, AL->stud[i].course);
+        printf("\n%u - %s %c. %s, %s - %d", AL.stud[i].ID, AL.stud[i].FName, AL.stud[i].MI, AL.stud[i].LName, AL.stud[i].course, AL.stud[i].yearLevel);
     }
     printf("\n===============================================================");
 }
 
-void display(ArrayList *AL, LinkedList *L)
+void display(ArrayList AL, LinkedList *L)
 // void display(ArrayList *AL)
 {
     int i;
     LinkedList trav;
     printf("\nMutated Array List:");
-    for (i = 0; i < AL->count; i++)
+    for (i = 0; i < AL.count; i++)
     {
-        printf("\n%u - %s %c. %s, %s", AL->stud[i].ID, AL->stud[i].FName, AL->stud[i].MI, AL->stud[i].LName, AL->stud[i].course);
+        printf("\n%u - %s %c. %s, %s - %d", AL.stud[i].ID, AL.stud[i].FName, AL.stud[i].MI, AL.stud[i].LName, AL.stud[i].course, AL.stud[i].yearLevel);
     }
     printf("\n\nCourse Linked List:");
     for (trav = *L; trav != NULL; trav = trav->link)
     {
-        printf("\n%u - %s %c. %s, %s", trav->stud.ID, trav->stud.FName, trav->stud.MI, trav->stud.LName, trav->stud.course);
+        printf("\n%u - %s %c. %s, %s - %d", trav->stud.ID, trav->stud.FName, trav->stud.MI, trav->stud.LName, trav->stud.course, trav->stud.yearLevel);
     }
 }
