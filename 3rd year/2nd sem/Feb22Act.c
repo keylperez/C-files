@@ -27,7 +27,7 @@ typedef struct
 
 void insertArr(ArrayList *AL, char fn[24], char mn, char ln[16], unsigned int id, char course[8], int year);
 void displayArr(ArrayList AL);
-void display(ArrayList AL, LinkedList *L);
+void display(ArrayList AL, LinkedList **L);
 LinkedList *sortCourse(ArrayList *AL, char string[8]);
 
 int main()
@@ -107,7 +107,7 @@ void displayArr(ArrayList AL)
     printf("\n===============================================================");
 }
 
-void display(ArrayList AL, LinkedList *L)
+void display(ArrayList AL, LinkedList **L)
 // void display(ArrayList *AL)
 {
     int i;
