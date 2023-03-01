@@ -85,7 +85,7 @@ LinkedList *sortCourse(ArrayList *AL, char string[8])
                 memmove(AL->stud + i, AL->stud + (i + 1), sizeof(AL->stud[0]) * (AL->count - i)); // move the array elements after the current index to the left
                 // sizeof AL->stud[0] is the size of the first element of the array which is a node so the size takes a whole node instead of 1 bit of memory
                 AL->count--; // since an element has been removed, the count is decremented
-                i--;         // checks current index (was i = 0 but decrement makes code more effecient)
+                // i--;         // checks current index (was i = 0 but decrement makes code more effecient)
             }
         }
         else
